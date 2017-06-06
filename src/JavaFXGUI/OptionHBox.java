@@ -34,6 +34,7 @@ public class OptionHBox extends HBox implements Playable{
 		parent  = p;
 		OptionHBox ref = this;
 		Label textFieldOtherLabel = new Label("Other: ");
+		textFieldOtherLabel.getStyleClass().add("otherLabel");
 		textFieldOther = new TextField();
 		textFieldOther.setPrefWidth(width-300);
 		ButtonHandler handler = new ButtonHandler( (Playable)ref, parent, true);

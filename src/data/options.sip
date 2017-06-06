@@ -8,12 +8,12 @@ Transportation
 College Visit
 +++
 ++
-Select reason for leaving:
+Enter reason for leaving:
 Sick
 Doctor/Dentist Appointment
 Religious Reason
 College Visit
 ++
-Select who you were excused by: 
+Enter who you were excused by: 
 Health Room
 Parent

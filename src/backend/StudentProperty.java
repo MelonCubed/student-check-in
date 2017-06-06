@@ -11,7 +11,6 @@ public class StudentProperty {
 	private SimpleIntegerProperty grade;
 	private SimpleStringProperty studentID;
 	private SimpleStringProperty reason;
-	private SimpleStringProperty note;
 	private SimpleStringProperty date;
 	private SimpleStringProperty time;
 	private SimpleStringProperty excused;
@@ -26,7 +25,6 @@ public class StudentProperty {
 		grade = new SimpleIntegerProperty(st.getGrade());
 		studentID = new SimpleStringProperty(st.getStudentID());
 		reason = new SimpleStringProperty(st.getReason());
-		note = new SimpleStringProperty(st.getNote());
 		date = new SimpleStringProperty(st.getDate());
 		time = new SimpleStringProperty(st.getTime());
 		excused = new SimpleStringProperty(st.getExcused());
@@ -63,14 +61,6 @@ public class StudentProperty {
 
 	public void setReason(String reason) {
 		this.reason.set(reason);
-	}
-
-	public String getNote() {
-		return note.get();
-	}
-
-	public void setNote(String note) {
-		this.note.set(note);
 	}
 	
 	public String getDate() {

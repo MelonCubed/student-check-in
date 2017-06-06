@@ -15,7 +15,6 @@ public class Student implements Comparable<Student>{
 	private int grade;
 	private String studentID;
 	private String reason;
-	private String note;
 	private String date;
 	private String time;
 	private String excused = "";
@@ -95,15 +94,11 @@ public class Student implements Comparable<Student>{
 
 
 
-	public String getNote() {
-		return note;
-	}
+	
 
 
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+	
 	
 	public String getTime(){
 		return time;

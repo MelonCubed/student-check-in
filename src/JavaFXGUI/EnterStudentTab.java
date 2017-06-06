@@ -305,7 +305,7 @@ public class EnterStudentTab extends Tab {
 
 			try {
 				PrintWriter printWriter = new PrintWriter (f);
-				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME,NOTE");
+				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME");
 				for(Student st : data.get("outin").getStudentList()){
 					printWriter.print("\"" + st.getDate() + "\",");
 					printWriter.print("\"" + st.getStudentID() + "\",");

@@ -136,7 +136,7 @@ public class EnterInfoTab extends Tab{
 
 		Button backButton = new Button("Back to Start");
 		backButton.setOnAction(e -> goBackToHome());
-		backButton.setPrefSize(200, 40);
+		backButton.setPrefSize(250, 40);
 		backButton.getStyleClass().addAll("buttonApp", "buttonRecords");
 
 		HBox navHBox = new HBox();
@@ -152,10 +152,14 @@ public class EnterInfoTab extends Tab{
 		VBox centerVBox = new VBox();
 		
 		Label qLabel= new Label();
-		qLabel.getStyleClass().addAll("optionTitle", "optionHeader");
 		
-		qLabel.setText("Please enter your reason for leaving and who you were excused by.");
-		
+		if (infoOptionSelect.size() > 1) {
+			qLabel.getStyleClass().addAll("optionTitle", "optionHeader");
+			qLabel.setText("Select an Option from Both Fields");
+		}
+		else {
+			qLabel.setText("");
+		}
 		HBox centerHBox = new HBox();
 		for (OptionSelect info:infoOptionSelect)
 			centerHBox.getChildren().add(info);
@@ -173,7 +177,7 @@ public class EnterInfoTab extends Tab{
 		contentVBox.getChildren().addAll(alert, centerVBox);
 		content.setCenter(contentVBox);
 		content.setBottom(navHBox);
-
+		centerVBox.setSpacing(10);
 
 		// "T:/Pictures" for pictures
 		// TODO Implement scanner, pictures, styling for summary page. Also implement selection, 

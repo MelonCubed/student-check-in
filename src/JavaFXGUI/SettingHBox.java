@@ -1,6 +1,9 @@
 package JavaFXGUI;
 import java.io.File;
 import java.util.concurrent.atomic.*;
+
+import javax.swing.table.TableCellRenderer;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -206,7 +210,6 @@ public class SettingHBox extends HBox{
 			htmlIn = htmlIn + "<td>" + st.getGrade() + "</td>";
 			htmlIn = htmlIn + "<td>" + st.getTime() + "</td>";
 			htmlIn = htmlIn + "<td>" + st.getReason() + "</td>";
-			htmlIn = htmlIn + "<td>" + st.getNote() + "</td>";
 		}
 
 		String htmlOut = "<!DOCTYPE html> <html> <head>"
@@ -232,7 +235,6 @@ public class SettingHBox extends HBox{
 			htmlOut = htmlOut + "<td>" + st.getExcused() + "</td>";
 			htmlOut = htmlOut + "<td>" + st.getTime() + "</td>";
 			htmlOut = htmlOut + "<td>" + st.getArrTime() + "</td>";
-			htmlOut = htmlOut + "<td>" + st.getNote() + "</td>";
 		}
 		htmlOut = htmlOut + "</tbody></table></body></html>";
 
@@ -301,7 +303,7 @@ public class SettingHBox extends HBox{
 		PrintWriter writer = null;
 		LocalDate todayDate = LocalDate.now();
 		String date = todayDate.toString();
-
+		
 		if (selectedFile!=null){
 			try {
 				writer = new PrintWriter(selectedFile.getPath() + "/" + date + "-Sign-In.csv");
@@ -323,7 +325,6 @@ public class SettingHBox extends HBox{
 				writer.print( temp.get(i).getGrade() + ", ");
 				writer.print( temp.get(i).getTime() + ", ");
 				writer.print( temp.get(i).getReason() + ", ");
-				writer.print( temp.get(i).getNote() + ", ");
 			}
 
 
@@ -333,7 +334,7 @@ public class SettingHBox extends HBox{
 			try {
 				writerOutIn = new PrintWriter(selectedFile.getPath() + "/" + date+"-Sign-Out.csv");
 			} catch (FileNotFoundException e) {
-				System.out.println("EROROR");
+				System.out.println("ERROR");
 				e.printStackTrace();
 			}
 
@@ -342,6 +343,9 @@ public class SettingHBox extends HBox{
 			}
 			writerOutIn.println();	
 			temp =  data.get("outIn").getStudentList();
+			Student[] tarr = (Student[]) temp.toArray();
+			Arrays.sort(tarr, new TimeComparator());
+			temp = (ArrayList<Student>) Arrays.asList(tarr);
 			for (int i = 0; i < temp.size(); i++){
 				writerOutIn.print(temp.get(i).getDate() + ", ");
 				writerOutIn.print(temp.get(i).getName() + " , ");
@@ -351,8 +355,8 @@ public class SettingHBox extends HBox{
 				writerOutIn.print( temp.get(i).getExcused() + ", ");
 				writerOutIn.print( temp.get(i).getTime() + ", ");
 				writerOutIn.print(temp.get(i).getArrTime() + ", ");
-				writerOutIn.print(temp.get(i).getNote() + ", ");
 			}
+			
 			writerOutIn.close();
 		}
 	}
@@ -568,8 +572,8 @@ public class SettingHBox extends HBox{
 
 		ArrayList<TableColumn> columnList = new ArrayList<TableColumn>();
 
-
-		double[] widths = {0.1, 0.15, 0.15, 0.07, 0.1, 0.25, 0.18}; 
+		
+		double[] widths = {0.13, 0.18, 0.18, 0.1, 0.13, 0.28}; 
 
 		for(int i = 0; i < headers.length; i++){
 			columnList.add(createTableColumn(headers[i]));
@@ -622,8 +626,8 @@ public class SettingHBox extends HBox{
 
 		ArrayList<TableColumn> columnListOut = new ArrayList<TableColumn>();
 
-
-		double[] widthsOut = {0.075, 0.125, 0.115, 0.05, 0.15, 0.1, 0.15, 0.125, 0.11}; 
+		double w = 0.11/8;
+		double[] widthsOut = {0.075+w, 0.125+w, 0.115+w, 0.05+w, 0.15+w, 0.1+w, 0.15+w, 0.125+w};//note 
 
 		for(int i = 0; i < headersOut.length; i++){
 			columnListOut.add(createTableColumn(headersOut[i]));

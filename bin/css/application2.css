@@ -1,5 +1,5 @@
 .searchTextField{
-   -fx-font-size: 12pt;
+   -fx-font-size: 13pt;
    -fx-font-family: "Courier New";
 }
 
@@ -18,6 +18,7 @@
 
 .alertText{
 	-fx-text-fill: #f2dede;
+	-fx-text-size: 15;
 }
 .sucessMessage{
 	-fx-background-color: #5cb85c;
@@ -37,25 +38,24 @@
  	-fx-text-fill: #ffffff;
  	-fx-background-color: #428bca;
  	-fx-border-color: #357ebd;
- 	-fx-font-size: 14px;
+ 	-fx-font-size: 15px;
 }
 .buttonApp {
   -fx-border-radius: 4px;
   -fx-background-radius: 4px;
   -fx-padding: 6px 12px 6px 12px;
-  -fx-text-fill: #000/*f6ff00*/;
-  -fx-background-color: #fff/*#428bca*/;
+  -fx-text-fill: #fff/*f6ff00*/;
+  -fx-background-color: #000/*#428bca*/;
   -fx-border-color: #000/*#357ebd*/;
 }
 .buttonStudent {
   -fx-border-radius: 4px;
   -fx-background-radius: 4px;
   -fx-padding: 6px 12px 6px 12px;
-  -fx-background-color: #fff/*#428bca*/;
-  -fx-font-size: /*14*/30px;
+  -fx-font-size: /*14*/40px;
 }
 .buttonRecords {
-  -fx-font-size: 25;
+  -fx-font-size: 30;
 }
 .button:hover {
   fx-text-fill: #ffffff;
@@ -63,10 +63,10 @@
 
 }
 .buttonApp:hover {
-  -fx-background-color: #000;
-  -fx-border-color: #fff;
+  -fx-background-color: #fff;
+  -fx-border-color: #000;
   -fx-font-weight: bold;
-  -fx-text-fill: #fff;  
+  -fx-text-fill: #000;  
 }
 
 .button:armed {
@@ -160,15 +160,15 @@
   -fx-text-fill: #fff;
   -fx-border-radius: 0;
   -fx-background-radius: 5 5 0 0;
-  -fx-font-size: 12pt;
+  -fx-font-size: 20pt;
   
 }
 .optionHeader {
 	-fx-font-weight: bold;
-	-fx-font-size: 14pt;
-	-fx-max-width:1100;
-	-fx-text-fill: #000;
-	-fx-background-color: #fff;
+	-fx-font-size: 20pt;
+	-fx-max-width:905;
+	-fx-text-fill: #fff;
+	-fx-background-color: /*#000*/#2765a6;
 }
 .optionButton-top {
   -fx-max-height: 10000;
@@ -179,7 +179,7 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0 0 0.5 0;
-  -fx-font-size: 14;
+  -fx-font-size: 20;
 }
 .optionButton-mid {
 
@@ -191,7 +191,7 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0.5 0;
-  -fx-font-size: 14;
+  -fx-font-size: 20;
 }
 
 .optionButton-bottom{
@@ -202,7 +202,7 @@
   -fx-border-width: 0.5 0 0 0;
   -fx-border-radius: 0 0 0 0;
   -fx-background-radius: 0 0 0 0;
-  -fx-font-size: 14;
+  -fx-font-size: 20;
 
 }
 
@@ -239,10 +239,13 @@
   -fx-padding: 0;
 
 }
+.otherLabel {
+	-fx-text-size: 200;
+}
 
 
 .textFieldOtherButton{
-  -fx-font-size: 10pt;
+  -fx-font-size: 15pt;
   -fx-background-color: #5cb85c;
   -fx-border-color: #4cae4c;
 
@@ -263,7 +266,7 @@
 }
 
 .submitButton{
-  -fx-font-size: 10pt;
+  -fx-font-size: 15pt;
   -fx-background-color: #f0ac4e;
   -fx-border-color: #f0ac4e;
   -fx-text-fill: #fff;
