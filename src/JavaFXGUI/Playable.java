@@ -9,4 +9,5 @@ public interface Playable {
 	public void reverse();
 	public int getPage();
 	public void clear();
+	public OptionSelect parent();
 }

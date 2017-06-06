@@ -1,5 +1,4 @@
 package JavaFXGUI;
-import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +22,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import javafx.scene.text.FontWeight;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import java.util.Collections;
@@ -87,25 +85,24 @@ public class EnterStudentTab extends Tab {
 
 
 
-		Image photoID  = new Image("img/image.png");
+		/*Image photoID  = new Image("img/image.png");
 		ImageView photoIDView = new ImageView();
 		photoIDView.setImage(photoID);
 		photoIDView.setFitWidth(300);
 		photoIDView.setPreserveRatio(true);
 		photoIDView.setSmooth(true);
-		photoIDView.setCache(true);
+		photoIDView.setCache(true);*/
 
 		HBox labelHBox = new HBox();
 
 
 		Label studentIDLabel = new Label("Enter student name: ");
-		studentIDLabel.getStyleClass().add("enterInfo");
 		studentIDLabel.getStyleClass().add("studentIDLabel");
 		Button submitButton = new Button("Submit");
 		submitButton.setDefaultButton(true);
-		submitButton.setPrefSize(200, 80);
+		submitButton.setPrefSize(100, 20);
 		submitButton.setOnAction(e -> submitButton());
-		submitButton.getStyleClass().add("submitButton");
+		submitButton.getStyleClass().addAll("buttonApp", "submitButton");
 
 		labelHBox.getChildren().addAll(studentIDLabel);
 		labelHBox.setAlignment(Pos.CENTER);
@@ -117,7 +114,7 @@ public class EnterStudentTab extends Tab {
 		Button backButton = new Button("Back");
 		backButton.setOnAction(e -> goBack(false));
 		backButton.setPrefSize(150, 20);
-		backButton.getStyleClass().add("otherButton");
+		backButton.getStyleClass().addAll("buttonApp", "buttonRecords");
 
 		navHBox.getChildren().add(backButton);
 
@@ -127,7 +124,6 @@ public class EnterStudentTab extends Tab {
 		FXCollections.sort(nameEntries, new StudentComparator());
 		searchTextField = new TextField();
 		searchTextField.setPromptText("Search");
-		searchTextField.getStyleClass().add("searchTextField");
 		searchTextField.textProperty().addListener(
 				new ChangeListener<Object>() {
 					public void changed(ObservableValue<?> observable, 
@@ -152,7 +148,7 @@ public class EnterStudentTab extends Tab {
 		VBox searchVBox = new VBox();
 		searchVBox.setPadding(new Insets(15, 12, 15, 12));
 		searchVBox.setSpacing(10);
-		searchVBox.setMaxSize(1100, 500);
+		searchVBox.setMaxSize(500, 1000);
 		searchVBox.getChildren().addAll(searchTextField, list);
 		list.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent click) {
@@ -166,7 +162,7 @@ public class EnterStudentTab extends Tab {
 
 
 
-		imageHBox.getChildren().addAll(photoIDView, labelHBox, searchVBox, submitButton);
+		imageHBox.getChildren().addAll(/*photoIDView,*/ labelHBox, searchVBox, submitButton);
 		content.setCenter(imageHBox);
 		content.setBottom(navHBox);
 		content.setTop(alert);
@@ -319,7 +315,6 @@ public class EnterStudentTab extends Tab {
 					printWriter.print("\"" + st.getExcused() + "\",");
 					printWriter.print("\"" + st.getTime() + "\",");
 					printWriter.print("\"" + st.getArrTime() + "\",");
-					printWriter.print("\"" + st.getNote() + "\"");
 					printWriter.println();
 				}
 				printWriter.close();

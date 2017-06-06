@@ -10,14 +10,16 @@ import javafx.event.*;
 /**
  * Creates a carousel of options that the student uses to select his/her reasons for signing in/out.
  * @author Kevin
+ * make both pages side by side
  */
 @SuppressWarnings("restriction")
-public class OptionSelect extends VBox{
+public class SignOut extends OptionSelect{
 	private ArrayList<ArrayList<OptionButton>> buttonList;
 	private ArrayList<String> title = new ArrayList<String>();
 	private VBox buttonVBox;
 	private ArrayList<String> option = new ArrayList<String>();
 	private int page;
+	private Label qLabel;
 	private Label titleLabel;
 	private int height, width;
 	private HBox bottomHBox;
@@ -29,6 +31,7 @@ public class OptionSelect extends VBox{
 	private Button pageButtonRight; 
 	private FadeTransition ftIn;
 	private FadeTransition ftOut;
+	private int pseudopage;
 	private ArrayList<OptionHBox> optionHBoxArray = new ArrayList<OptionHBox>();
 	/**
 	 * Constructor. The data of the optionSelect is represented by an ArrayList of Strings that indicates what options where selected.
@@ -37,16 +40,16 @@ public class OptionSelect extends VBox{
 	 * @param close The Tab to be closed when the options are submitted.
 	 * @param st The Student selected
 	 */
-	public OptionSelect(int w, int h, EnterInfoTab close, Student st){
+	public SignOut(int w, int h, EnterInfoTab close, Student st, int pp){
+		super(w, h, close, st);
 		buttonList = new ArrayList<ArrayList<OptionButton>>();
 		height = h;
 		width = w;
 		student = st;
 		tabToBeClosed = close;
+		pseudopage = pp;
 
-		//init();
-
-
+		init();
 	}
 	/**
 	 * Initializes contents of the optionSelect.
@@ -74,8 +77,6 @@ public class OptionSelect extends VBox{
 		submitButton.setOnAction(new submitHandler());
 
 
-
-
 		titleLabel= new Label();
 		titleLabel.getStyleClass().add("optionTitle");
 
@@ -92,20 +93,20 @@ public class OptionSelect extends VBox{
 		pageButtonRight.getStyleClass().add("pageButton-right");
 		pageButtonRight.setOnAction(new NextHandler(true));
 
-		contentHBox.getChildren().add(pageButtonLeft);
+		//contentHBox.getChildren().add(pageButtonLeft);
 		buttonVBox = new VBox();
 		buttonVBox.getStyleClass().add("buttonVBox");
 
 
-		contentHBox.getChildren().addAll(buttonVBox, pageButtonRight);
+		contentHBox.getChildren().addAll(buttonVBox);
 		getChildren().add(contentHBox);
 
 		bottomHBox = new HBox();
 		pageNumberLabel = new Label();
 
-		bottomHBox.getChildren().add(submitButton);
-		bottomHBox.getStyleClass().add("bottomHBox");
-		getChildren().add(bottomHBox);
+		//bottomHBox.getChildren().add(submitButton);
+		//bottomHBox.getStyleClass().add("bottomHBox");
+		//getChildren().add(bottomHBox);
 
 
 	}
@@ -325,11 +326,10 @@ public class OptionSelect extends VBox{
 	}
 	
 	public int getPage(){
-		return page;
-	}
-	public void onRequest() {
-		// TODO Auto-generated method stub
-		
+		return pseudopage;
 	}
 	
+	public void onRequest() {
+		tabToBeClosed.sendData(option);
+	}
 }

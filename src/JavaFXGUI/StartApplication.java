@@ -26,6 +26,8 @@ import backend.StudentList;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 @SuppressWarnings("restriction")
 /**
  * The Main class of the program. This class is run to initialize everything. 
@@ -56,7 +58,7 @@ public class StartApplication extends Application {
 		StudentList studentData =  readStudentDatabase("src/data/SchoolDatabase.mer", "d");
 		StudentList studentIn = new StudentList();
 		StudentList studentOutIn = new StudentList();
-		stage.getIcons().add(new Image("img/logo.jpg"));
+		stage.getIcons().add(new Image("img/image.png"));
 		
 		LocalDate todayDate = LocalDate.now();
 		String date = todayDate.toString();
@@ -129,7 +131,7 @@ public class StartApplication extends Application {
 		content = new StackPane();
 		BorderPane borderPane = new BorderPane();
 
-		scene.getStylesheets().add("css/application.css");
+		scene.getStylesheets().add("css/application2.css");
 
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
@@ -162,6 +164,17 @@ public class StartApplication extends Application {
 		brightenTransition.setToValue(1.0);
 		brightenTransition.setCycleCount(1);
 
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+		      if(key.getCode()==KeyCode.ENTER) {
+		    	  onEnter();
+		      }
+		});
+
+	}
+	
+	public void onEnter() {
+		
+		EnterInfoTab.staticRequest();
 	}
 	/**
 	 * Shows the settings page.
@@ -247,7 +260,6 @@ public class StartApplication extends Application {
 					Student st = new Student (name,grade,id);
 					st.setTime(student.get(field.get("TIME")));
 					st.setReason(student.get(field.get("REASON")));
-					st.setNote(student.get(field.get("NOTE")));
 					st.setDate(student.get(field.get("DATE")));
 					list.add(st);
 				}
@@ -260,7 +272,6 @@ public class StartApplication extends Application {
 					Student st = new Student (name,grade,id);
 					st.setTime(student.get(field.get("TIME")));
 					st.setReason(student.get(field.get("REASON")));
-					st.setNote(student.get(field.get("NOTE")));
 					st.setArrTime(student.get(field.get("ARRTIME")));
 					st.setExcused(student.get(field.get("EXCUSED")));
 					st.setDate(student.get(field.get("DATE")));

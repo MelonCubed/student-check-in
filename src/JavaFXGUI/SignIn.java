@@ -12,7 +12,7 @@ import javafx.event.*;
  * @author Kevin
  */
 @SuppressWarnings("restriction")
-public class OptionSelect extends VBox{
+public class SignIn extends OptionSelect {
 	private ArrayList<ArrayList<OptionButton>> buttonList;
 	private ArrayList<String> title = new ArrayList<String>();
 	private VBox buttonVBox;
@@ -25,8 +25,8 @@ public class OptionSelect extends VBox{
 	private Button submitButton;
 	private EnterInfoTab tabToBeClosed;
 	private Student student;
-	private Button pageButtonLeft;
-	private Button pageButtonRight; 
+	//private Button pageButtonLeft;
+	//private Button pageButtonRight; 
 	private FadeTransition ftIn;
 	private FadeTransition ftOut;
 	private ArrayList<OptionHBox> optionHBoxArray = new ArrayList<OptionHBox>();
@@ -37,14 +37,15 @@ public class OptionSelect extends VBox{
 	 * @param close The Tab to be closed when the options are submitted.
 	 * @param st The Student selected
 	 */
-	public OptionSelect(int w, int h, EnterInfoTab close, Student st){
+	public SignIn(int w, int h, EnterInfoTab close, Student st){
+		super(w, h, close, st);
 		buttonList = new ArrayList<ArrayList<OptionButton>>();
 		height = h;
 		width = w;
 		student = st;
 		tabToBeClosed = close;
 
-		//init();
+		init();
 
 
 	}
@@ -84,28 +85,28 @@ public class OptionSelect extends VBox{
 		getStyleClass().add("optionSelect");
 		HBox contentHBox = new HBox();
 
-		pageButtonLeft = new Button();
-		pageButtonLeft.getStyleClass().add("pageButton-left");
-		pageButtonLeft.setOnAction(new NextHandler(false));
+		//pageButtonLeft = new Button();
+		//pageButtonLeft.getStyleClass().add("pageButton-left");
+		//pageButtonLeft.setOnAction(new NextHandler(false));
 
-		pageButtonRight = new Button();
-		pageButtonRight.getStyleClass().add("pageButton-right");
-		pageButtonRight.setOnAction(new NextHandler(true));
+		//pageButtonRight = new Button();
+		//pageButtonRight.getStyleClass().add("pageButton-right");
+		//pageButtonRight.setOnAction(new NextHandler(true));
 
-		contentHBox.getChildren().add(pageButtonLeft);
+		//contentHBox.getChildren().add(pageButtonLeft);
 		buttonVBox = new VBox();
 		buttonVBox.getStyleClass().add("buttonVBox");
 
 
-		contentHBox.getChildren().addAll(buttonVBox, pageButtonRight);
+		contentHBox.getChildren().addAll(buttonVBox);
 		getChildren().add(contentHBox);
 
 		bottomHBox = new HBox();
 		pageNumberLabel = new Label();
 
-		bottomHBox.getChildren().add(submitButton);
+		//bottomHBox.getChildren().add(submitButton);
 		bottomHBox.getStyleClass().add("bottomHBox");
-		getChildren().add(bottomHBox);
+		//getChildren().add(bottomHBox);
 
 
 	}
@@ -142,7 +143,7 @@ public class OptionSelect extends VBox{
 	 * @param pg The page to be displayed
 	 */
 	private void updateState(int pg){
-		if (pg == 0 && pg != buttonList.size()-1){
+		/*if (pg == 0 && pg != buttonList.size()-1){
 			pageButtonLeft.setDisable(true);
 			pageButtonRight.setDisable(false);
 		}
@@ -153,7 +154,7 @@ public class OptionSelect extends VBox{
 		else{
 			pageButtonLeft.setDisable(false);
 			pageButtonRight.setDisable(true);
-		}
+		}*/
 		titleLabel.setText(title.get(pg));
 		page = pg;
 
@@ -262,8 +263,8 @@ public class OptionSelect extends VBox{
 			pageNumberLabel.setText(pg + 1 +" / " + (buttonList.size() + 1));
 			page = page + 1;
 			ftIn.play();
-			pageButtonRight.setDisable(true);
-			pageButtonLeft.setDisable(false);
+			//pageButtonRight.setDisable(true);
+			//pageButtonLeft.setDisable(false);
 		}
 		else{
 			ftOut.play();
@@ -327,9 +328,10 @@ public class OptionSelect extends VBox{
 	public int getPage(){
 		return page;
 	}
+	
 	public void onRequest() {
-		// TODO Auto-generated method stub
-		
+		tabToBeClosed.addData(option);
 	}
+	
 	
 }

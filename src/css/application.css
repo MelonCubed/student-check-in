@@ -1,7 +1,8 @@
 .searchTextField{
-   -fx-font-size: 30pt;
+   -fx-font-size: 12pt;
    -fx-font-family: "Courier New";
 }
+
 
 .root{
 	-fx-font-family: "Avenir";
@@ -37,6 +38,7 @@
   -fx-text-fill: #ffffff;
   -fx-background-color: #428bca;
   -fx-border-color: #357ebd;
+  -fx-font-size: 14px;
 }
 .button:hover {
   -fx-text-fill: #ffffff;
@@ -136,7 +138,7 @@
   -fx-text-fill: #fff;
   -fx-border-radius: 0;
   -fx-background-radius: 5 5 0 0;
-  -fx-font-size: 20pt;
+  -fx-font-size: 12pt;
   
 }
 .optionButton-top {
@@ -148,7 +150,7 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0 0 0.5 0;
-  -fx-font-size: 20;
+  -fx-font-size: 14;
 }
 .optionButton-mid {
 
@@ -160,7 +162,7 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0.5 0;
-  -fx-font-size: 20;
+  -fx-font-size: 14;
 }
 
 .optionButton-bottom{
@@ -171,7 +173,7 @@
   -fx-border-width: 0.5 0 0 0;
   -fx-border-radius: 0 0 0 0;
   -fx-background-radius: 0 0 0 0;
-  -fx-font-size: 20;
+  -fx-font-size: 14;
 
 }
 
@@ -211,7 +213,7 @@
 
 
 .textFieldOtherButton{
-  -fx-font-size: 20pt;
+  -fx-font-size: 10pt;
   -fx-background-color: #5cb85c;
   -fx-border-color: #4cae4c;
 
@@ -232,7 +234,7 @@
 }
 
 .submitButton{
-  -fx-font-size: 30pt;
+  -fx-font-size: 10pt;
   -fx-background-color: #5cb85c;
   -fx-border-color: #4cae4c;
 
@@ -603,17 +605,7 @@
 .summaryVBox{
 	-fx-padding: 20;
 	-fx-background-color: transparent;
-	-fx-font-size: 20;
 }
 .studentIDLabel{
 	-fx-font-size: 15;
-}
-
-.otherButton{
-	-fx-font-size: 40;
-	-fx-background-color: #000000;
-}
-
-.enterInfo{
-	-fx-font-size: 30;
 }

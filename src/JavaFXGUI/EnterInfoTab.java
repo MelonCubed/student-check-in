@@ -1,4 +1,5 @@
 package JavaFXGUI;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import backend.Student;
 import backend.StudentList;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.event.EventHandler;
 import javafx.geometry.*;
 /**
  * The tab where the student enters specific information about why he/she is late.
@@ -28,8 +31,12 @@ public class EnterInfoTab extends Tab{
 	private HashMap<String, StudentList> data;
 	private AnimatedAlertBox alert;
 	private VBox summaryLeftVBox;
-	private OptionSelect infoOptionSelect;
+	private ArrayList<OptionSelect> infoOptionSelect;
 	private ArrayList<AnimatedLabel> summariesOptions;
+	private Button requestButton;
+	private static boolean alive = false;
+	private static EnterInfoTab live;
+
 	/**
 	 * Initializes the Tab. The Tab reads from a file "src/data/options.sip" for a list 
 	 * of the options of the OptionSelect carousel. 
@@ -49,6 +56,9 @@ public class EnterInfoTab extends Tab{
 		student = st;
 
 		data = d;
+		
+		alive = true;
+		live = this;
 
 		BorderPane content = new BorderPane();
 
@@ -63,9 +73,14 @@ public class EnterInfoTab extends Tab{
 
 
 
-
-		infoOptionSelect = new OptionSelect(770, 550, this, student);
-
+		infoOptionSelect = new ArrayList<OptionSelect>();
+		if (goingIn) {
+			infoOptionSelect.add(new SignIn(770, 550, this, student));
+		} else {
+			for (int i = 0; i < 2; i++)
+				infoOptionSelect.add(new SignOut(550, 550, this, student, i));
+		}
+		//infoOptionSelect = goingIn? new SignIn(770, 550, this, student) : new SignOut(770, 550, this, student);
 		int version = 0;
 		if (goingIn){
 			version = 0;
@@ -100,10 +115,18 @@ public class EnterInfoTab extends Tab{
 			else if (stringData.equals("++") && version == v){
 				page++;
 				stringData = file.nextLine();
-				infoOptionSelect.addPage(stringData);
+				//for (OptionSelect info:infoOptionSelect)
+				if (page == 0)
+					infoOptionSelect.get(0).addPage(stringData);
+				else
+					infoOptionSelect.get(1).addPage(stringData);
 			}
 			else if (version == v){
-				infoOptionSelect.addButton(page, stringData, stringData);
+				//for (OptionSelect info:infoOptionSelect) 
+				if (page == 0)
+					infoOptionSelect.get(0).addButton(page, stringData, stringData);
+				else
+					infoOptionSelect.get(1).addButton(page-1, stringData, stringData);
 			}
 		}
 		file.close();
@@ -113,8 +136,8 @@ public class EnterInfoTab extends Tab{
 
 		Button backButton = new Button("Back to Start");
 		backButton.setOnAction(e -> goBackToHome());
-		backButton.setPrefSize(300, 20);
-		backButton.getStyleClass().add("otherButton");
+		backButton.setPrefSize(200, 40);
+		backButton.getStyleClass().addAll("buttonApp", "buttonRecords");
 
 		HBox navHBox = new HBox();
 		navHBox.setPadding(new Insets(15, 12, 15, 12));
@@ -127,13 +150,29 @@ public class EnterInfoTab extends Tab{
 		contentVBox.setSpacing(40);
 
 		VBox centerVBox = new VBox();
-		centerVBox.getChildren().add(infoOptionSelect);
+		
+		Label qLabel= new Label();
+		qLabel.getStyleClass().addAll("optionTitle", "optionHeader");
+		
+		qLabel.setText("Please enter your reason for leaving and who you were excused by.");
+		
+		HBox centerHBox = new HBox();
+		for (OptionSelect info:infoOptionSelect)
+			centerHBox.getChildren().add(info);
+		
+		requestButton = new Button("Submit");
+		requestButton.getStyleClass().add("submitButton");
+		requestButton.setOnAction(e -> request());
+		
+		centerVBox.getChildren().addAll(qLabel, centerHBox, requestButton);
+		
+		
+		centerHBox.setAlignment(Pos.CENTER);
 		centerVBox.setAlignment(Pos.CENTER);
 
 		contentVBox.getChildren().addAll(alert, centerVBox);
 		content.setCenter(contentVBox);
 		content.setBottom(navHBox);
-		contentVBox.setStyle("-fx-font-size: 20px;");
 
 
 		// "T:/Pictures" for pictures
@@ -147,8 +186,8 @@ public class EnterInfoTab extends Tab{
 		//leftContentVBox.getChildren().addAll(summaryLeftVBox);
 
 		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setContent(leftContentVBox);
-		content.setLeft(scrollPane);
+		//scrollPane.setContent(leftContentVBox);
+		//content.setLeft(scrollPane);
 
 		setContent(content);
 
@@ -174,7 +213,9 @@ public class EnterInfoTab extends Tab{
 
 		Separator separator = new Separator();
 		summaryLeftVBox.getChildren().add(separator);
-		ArrayList<String> titleList = infoOptionSelect.getPageTitles();
+		ArrayList<String> titleList = infoOptionSelect.get(0).getPageTitles();
+		//ArrayList<String> titleList2 = infoOptionSelect.get(1).getPageTitles();
+
 		for (int i = 0; i < titleList.size(); i++){
 			summariesOptions.add(new AnimatedLabel (titleList.get(i) +" "+option.get(i)));
 		}
@@ -210,6 +251,7 @@ public class EnterInfoTab extends Tab{
 	 */
 	public void die(){
 		parent.getTabs().remove(this);
+		alive = false;
 	}
 	/**
 	 * Adds data to the program, and writes the data out to a backup file in case the program shuts down.
@@ -217,20 +259,18 @@ public class EnterInfoTab extends Tab{
 	 * @param option An ArrayList of Strings obtained from the OptionSelect that contains the data from that OptionSelect
 	 */
 	public void addData(ArrayList<String> option){
-
-		if (option.get(0).isEmpty() || option.get(1).isEmpty()){
+		if (option.get(0).isEmpty() || (!goingIn && option.get(1).isEmpty())){
 			alert.play();
 		}
 		else{
 			if (!goingIn){
 				student.setReason(option.get(0));
 				student.setExcused(option.get(1));
-				student.setNote(option.get(2));
 				data.get("outin").add(student);
 			}
 			else{
+				
 				student.setReason(option.get(0));
-				student.setNote(option.get(1));
 
 				data.get("in").add(student);
 			}
@@ -247,7 +287,7 @@ public class EnterInfoTab extends Tab{
 
 			try {
 				PrintWriter printWriter = new PrintWriter (f);
-				printWriter.println("DATE,ID,NAME,GR,TIME,REASON,NOTE");
+				printWriter.println("DATE,ID,NAME,GR,TIME,REASON");
 				for(Student st : data.get("in").getStudentList()){
 					printWriter.print("\"" + st.getDate() + "\",");
 					printWriter.print("\"" + st.getStudentID() + "\",");
@@ -255,7 +295,6 @@ public class EnterInfoTab extends Tab{
 					printWriter.print("\"" + st.getGrade() + "\",");
 					printWriter.print("\"" + st.getTime() + "\",");
 					printWriter.print("\"" + st.getReason() + "\",");
-					printWriter.print("\"" + st.getNote() + "\"");
 					printWriter.println();
 				}
 				printWriter.close();
@@ -274,7 +313,7 @@ public class EnterInfoTab extends Tab{
 
 			try {
 				PrintWriter printWriter = new PrintWriter (f);
-				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME,NOTE");
+				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME");
 				for(Student st : data.get("outin").getStudentList()){
 					printWriter.print("\"" + st.getDate() + "\",");
 					printWriter.print("\"" + st.getStudentID() + "\",");
@@ -284,7 +323,6 @@ public class EnterInfoTab extends Tab{
 					printWriter.print("\"" + st.getExcused() + "\",");
 					printWriter.print("\"" + st.getTime() + "\",");
 					printWriter.print("\"" + st.getArrTime() + "\",");
-					printWriter.print("\"" + st.getNote() + "\"");
 					printWriter.println();
 				}
 				printWriter.close();
@@ -301,5 +339,21 @@ public class EnterInfoTab extends Tab{
 		goBack();
 		previous.goBack(false);
 	}
-
+	
+	private void request() {
+		for (OptionSelect info:infoOptionSelect)
+			info.onRequest();
+		if (infoOptionSelect.get(0) instanceof SignOut)
+			this.addData(dat);
+	}
+	private ArrayList<String> dat = new ArrayList<String>();
+	public void sendData(ArrayList<String> option) {
+		dat.addAll(option);
+	}
+	
+	public static void staticRequest() {
+		if (alive) {
+			live.request();
+		}
+	}
 }

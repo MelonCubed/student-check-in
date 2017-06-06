@@ -97,6 +97,9 @@ public class OptionHBox extends HBox implements Playable{
 	}
 	
 	public int getPage(){
-		return page;
+		return parent.getPage();
+	}
+	public OptionSelect parent() {
+		return parent;
 	}
 }

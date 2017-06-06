@@ -11,17 +11,19 @@ public class OptionButton extends Button implements Playable{
 	private AnimatedGif gfA1;
 	private AnimatedGif gfA2;
 	private int page;
+	private OptionSelect par;
 	/**
 	 * Creates itself without any style. 
 	 * @param t The content displayed in the button
 	 * @param value The value of the button
 	 * @param p The page number
 	 */
-	public OptionButton(String t, String value, int p){
+	public OptionButton(String t, String value, int p, OptionSelect parent){
 		setText(t);
 		valueText = value;
 		init();
 		page = p;
+		par = parent;
 	}
 	/**
 	 * Initializes the button with a specific style.
@@ -30,12 +32,13 @@ public class OptionButton extends Button implements Playable{
 	 * @param style The Style of the button ("top", "mid", or "bottom");
 	 * @param p the Page number
 	 */
-	public OptionButton(String t, String value, String style, int p){
+	public OptionButton(String t, String value, String style, int p, OptionSelect parent){
 		setText(t);
 		valueText = value;
 		setPosStyle(style);
 		init();
 		page = p;
+		par = parent;
 	}
 
 	/**
@@ -93,7 +96,7 @@ public class OptionButton extends Button implements Playable{
 	}
 
 	public int getPage(){
-		return page;
+		return par.getPage();
 	}
 	
 	public boolean equals(OptionButton other){
@@ -101,6 +104,10 @@ public class OptionButton extends Button implements Playable{
 	}
 	public void clear(){
 		
+	}
+	
+	public OptionSelect parent() {
+		return par;
 	}
 
 }

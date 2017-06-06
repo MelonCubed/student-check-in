@@ -54,9 +54,9 @@ public class SettingHBox extends HBox{
 	private HashMap<String, StudentList>data;
 	private AtomicBoolean busMode;
 	private String[] headers = {"Date", "Student ID", "Student Name", "Grade", "Time In", 
-			"Reason for Late Arrival", "Note Status"};
+			"Reason for Late Arrival"};
 	private String[] headersOut = {"Date", "Student ID", "Student Name", "Grade", "Reason for leaving", 
-			"Excused By", "Time of Departure", "Time of Return", "Note Status"};
+			"Excused By", "Time of Departure", "Time of Return"};
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 
 	/**
@@ -605,8 +605,6 @@ public class SettingHBox extends HBox{
 				String>("time"));
 		columnList.get(5).setCellValueFactory(new PropertyValueFactory<StudentProperty, 
 				String>("reason"));
-		columnList.get(6).setCellValueFactory(new PropertyValueFactory<StudentProperty, 
-				String>("note"));
 
 		tableSignIn.setItems(goingIn);
 		return tableSignIn;
@@ -664,8 +662,6 @@ public class SettingHBox extends HBox{
 				String>("time"));
 		columnListOut.get(7).setCellValueFactory(new PropertyValueFactory<StudentProperty, 
 				String>("arrTime"));
-		columnListOut.get(8).setCellValueFactory(new PropertyValueFactory<StudentProperty, 
-				String>("note"));
 
 		tableSignOut.setItems(goingOutIn);
 		return tableSignOut;
