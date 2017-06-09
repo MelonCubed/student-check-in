@@ -61,10 +61,10 @@ public class StartTab extends Tab {
 		viewButtonHBox.setSpacing(10);
 
 		Button viewButton = new Button("View Records");
-		viewButton.setPrefSize(300, 30);
+		viewButton.setPrefSize(250, 40);
 		viewButton.setOnAction(e -> parent.parent.showOptionsPage());
-		viewButton.getStyleClass().add("otherButton");
 		viewButtonHBox.getChildren().add(viewButton);
+		viewButton.getStyleClass().addAll("buttonApp", "buttonRecords");
 
 		alert = new AnimatedAlertBox("Submission Sucessful!", false);
 
@@ -99,6 +99,7 @@ public class StartTab extends Tab {
 		if (busMode.get()){
 			list = new ListView<String>();
 
+
 			Tooltip toolList = new Tooltip("Double click to select student, \n"
 					+ "or select student and then click submit.");
 			list.setTooltip(toolList);
@@ -128,7 +129,7 @@ public class StartTab extends Tab {
 			imageHBox.setPadding(new Insets(15, 12, 15, 12));
 			imageHBox.setSpacing(10);
 
-			Label studentIDLabel = new Label("Enter student name or six-digit student ID for late bus: ");
+			Label studentIDLabel = new Label("Enter student name: ");
 			studentIDLabel.getStyleClass().add("studentIDLabel");
 			Button submitButton = new Button("Submit");
 			submitButton.setDefaultButton(true);
@@ -190,29 +191,33 @@ public class StartTab extends Tab {
 
 		}
 		else{
-			HBox contentHBox = new HBox();
-			contentHBox.setAlignment(Pos.CENTER);
-			contentHBox.setPadding(new Insets(15, 12, 15, 12));
-			contentHBox.setSpacing(10);
+			VBox contentVBox = new VBox();
+			contentVBox.setAlignment(Pos.CENTER);
+			contentVBox.setPadding(new Insets(15, 12, 15, 12));
+			contentVBox.setSpacing(10);
 
 
-
-
+			Image phs = new Image(StartTab.class.getResourceAsStream("../img/image.png"));
+			ImageView imgphs = new ImageView();
+			imgphs.setImage(phs);
+			
+			
 			Button buttonSignIn = new Button("Student Sign In");
 			buttonSignIn.setPrefSize(500, 100);
 			buttonSignIn.setOnAction(e -> moveOn(true));
-			buttonSignIn.getStyleClass().add("otherButton");
+			buttonSignIn.getStyleClass().addAll("buttonApp", "buttonStudent");
 
 
 			Button buttonSignOut = new Button("Student Sign Out");
 			buttonSignOut.setPrefSize(500, 100);
 			buttonSignOut.setOnAction(e -> moveOn(false));
-			buttonSignOut.getStyleClass().add("otherButton");
+			buttonSignOut.getStyleClass().addAll("buttonApp", "buttonStudent");
 
 
 
-			contentHBox.getChildren().addAll(buttonSignIn, buttonSignOut);
-			content.setCenter(contentHBox);
+			contentVBox.getChildren().addAll(imgphs, buttonSignIn, buttonSignOut);
+			contentVBox.setSpacing(50);
+			content.setCenter(contentVBox);
 
 		}
 
@@ -304,7 +309,6 @@ public class StartTab extends Tab {
 		
 		
 		Student newStudent = data.get("database").getStudentByToString(txt);
-		newStudent.setNote("No need - Late Bus");
 		newStudent.setReason("Late Bus");
 		data.get("in").add(newStudent);
 		
@@ -318,7 +322,7 @@ public class StartTab extends Tab {
 
 		try {
 			PrintWriter printWriter = new PrintWriter (f);
-			printWriter.println("DATE,ID,NAME,GR,TIME,REASON,NOTE");
+			printWriter.println("DATE,ID,NAME,GR,TIME,REASON");
 			for(Student st : data.get("in").getStudentList()){
 				printWriter.print("\"" + st.getDate() + "\",");
 				printWriter.print("\"" + st.getStudentID() + "\",");
@@ -326,7 +330,6 @@ public class StartTab extends Tab {
 				printWriter.print("\"" + st.getGrade() + "\",");
 				printWriter.print("\"" + st.getTime() + "\",");
 				printWriter.print("\"" + st.getReason() + "\",");
-				printWriter.print("\"" + st.getNote() + "\"");
 				printWriter.println();
 			}
 			printWriter.close();
