@@ -627,7 +627,7 @@ public class SettingHBox extends HBox{
 		ArrayList<TableColumn> columnListOut = new ArrayList<TableColumn>();
 
 		double w = 0.11/8;
-		double[] widthsOut = {0.075+w, 0.125+w, 0.115+w, 0.05+w, 0.15+w, 0.1+w, 0.15+w, 0.125+w};//note 
+		double[] widthsOut = {0.075+w, 0.125+w, 0.115+w, 0.05+w, 0.15+w, 0.1+w, 0.15+w, 0.125+w}; 
 
 		for(int i = 0; i < headersOut.length; i++){
 			columnListOut.add(createTableColumn(headersOut[i]));

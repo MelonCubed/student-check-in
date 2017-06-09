@@ -58,7 +58,7 @@ public class StartApplication extends Application {
 		StudentList studentData =  readStudentDatabase("src/data/SchoolDatabase.mer", "d");
 		StudentList studentIn = new StudentList();
 		StudentList studentOutIn = new StudentList();
-		stage.getIcons().add(new Image("img/image.png"));
+		stage.getIcons().add(new Image("img/MelonLogo.jpg"));
 		
 		LocalDate todayDate = LocalDate.now();
 		String date = todayDate.toString();
@@ -75,7 +75,7 @@ public class StartApplication extends Application {
 			}
 			try {
 				PrintWriter printWriter = new PrintWriter (f);
-				printWriter.println("DATE,ID,NAME,GR,TIME,REASON,NOTE");
+				printWriter.println("DATE,ID,NAME,GR,TIME,REASON");
 				printWriter.close();
 			}
 			catch(IOException e1){
@@ -98,7 +98,7 @@ public class StartApplication extends Application {
 			}
 			try {
 				PrintWriter printWriter = new PrintWriter (f);
-				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME,NOTE");
+				printWriter.println("DATE,ID,NAME,GR,REASON,EXCUSED,TIME,ARRTIME");
 				printWriter.close();
 			}
 			catch(IOException e1){
