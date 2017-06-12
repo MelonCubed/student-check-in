@@ -3,6 +3,10 @@
    -fx-font-family: "Courier New";
 }
 
+.searchTextField:filled:selected{
+	-fx-background-color: #ffeb3b;
+}
+
 
 .root{
 	-fx-font-family: "Avenir";
@@ -44,9 +48,10 @@
   -fx-border-radius: 4px;
   -fx-background-radius: 4px;
   -fx-padding: 6px 12px 6px 12px;
-  -fx-text-fill: #fff/*f6ff00*/;
-  -fx-background-color: #000/*#428bca*/;
-  -fx-border-color: #000/*#357ebd*/;
+  -fx-text-fill: #000/*f6ff00*/;
+  -fx-font-weight: bold;
+  -fx-background-color: #ffeb3b/*#428bca*/;
+  -fx-border-color: #ffeb3b/*#357ebd*/;
 }
 .buttonStudent {
   -fx-border-radius: 4px;
@@ -63,15 +68,14 @@
 
 }
 .buttonApp:hover {
-  -fx-background-color: #fff;
-  -fx-border-color: #000;
+  -fx-background-color: transparent;
+  -fx-border-color: #ffeb3b;
   -fx-font-weight: bold;
-  -fx-text-fill: #000;  
+  -fx-text-fill: #ffeb3b;  
 }
 
 .button:armed {
   -fx-text-fill: #ffffff !important;
-  -fx-background-color: rgb(129, 107, 68) !important; 
   -fx-border-color: #ffd700 !important;
 }
 
@@ -156,7 +160,7 @@
   -fx-max-width: 10000;
   -fx-pref-height:50;
   -fx-alignment:center;
-  -fx-background-color:/*#fff*/#337ab7;
+  -fx-background-color:/*#fff*/#ffeb3b;
   -fx-text-fill: #fff;
   -fx-border-radius: 0;
   -fx-background-radius: 5 5 0 0;
@@ -168,7 +172,7 @@
 	-fx-font-size: 20pt;
 	-fx-max-width:905;
 	-fx-text-fill: #fff;
-	-fx-background-color: /*#000*/#2765a6;
+	-fx-background-color: /*#000*/#c8b900;
 }
 .optionButton-top {
   -fx-max-height: 10000;

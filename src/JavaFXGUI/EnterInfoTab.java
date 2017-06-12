@@ -265,6 +265,7 @@ public class EnterInfoTab extends Tab{
 	public void addData(ArrayList<String> option){
 		if (option.get(0).isEmpty() || (!goingIn && option.get(1).isEmpty())){
 			alert.play();
+			option.clear();
 		}
 		else{
 			if (!goingIn){
