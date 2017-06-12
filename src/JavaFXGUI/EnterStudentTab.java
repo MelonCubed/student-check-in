@@ -102,7 +102,7 @@ public class EnterStudentTab extends Tab {
 		submitButton.setDefaultButton(true);
 		submitButton.setPrefSize(100, 20);
 		submitButton.setOnAction(e -> submitButton());
-		submitButton.getStyleClass().addAll("buttonApp", "submitButton");
+		submitButton.getStyleClass().addAll("buttonApp");
 
 		labelHBox.getChildren().addAll(studentIDLabel);
 		labelHBox.setAlignment(Pos.CENTER);
@@ -148,7 +148,7 @@ public class EnterStudentTab extends Tab {
 		VBox searchVBox = new VBox();
 		searchVBox.setPadding(new Insets(15, 12, 15, 12));
 		searchVBox.setSpacing(10);
-		searchVBox.setMaxSize(500, 1000);
+		searchVBox.setMaxSize(550, 1000);
 		searchVBox.getChildren().addAll(searchTextField, list);
 		list.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent click) {

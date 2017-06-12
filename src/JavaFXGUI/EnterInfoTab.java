@@ -78,7 +78,7 @@ public class EnterInfoTab extends Tab{
 			infoOptionSelect.add(new SignIn(770, 550, this, student));
 		} else {
 			for (int i = 0; i < 2; i++)
-				infoOptionSelect.add(new SignOut(550, 550, this, student, i));
+				infoOptionSelect.add(new SignOut(650, 550, this, student, i));
 		}
 		//infoOptionSelect = goingIn? new SignIn(770, 550, this, student) : new SignOut(770, 550, this, student);
 		int version = 0;
@@ -165,7 +165,7 @@ public class EnterInfoTab extends Tab{
 			centerHBox.getChildren().add(info);
 		
 		requestButton = new Button("Submit");
-		requestButton.getStyleClass().add("submitButton");
+		requestButton.getStyleClass().add("buttonApp");
 		requestButton.setOnAction(e -> request());
 		
 		centerVBox.getChildren().addAll(qLabel, centerHBox, requestButton);
@@ -265,7 +265,7 @@ public class EnterInfoTab extends Tab{
 	public void addData(ArrayList<String> option){
 		if (option.get(0).isEmpty() || (!goingIn && option.get(1).isEmpty())){
 			alert.play();
-			option.clear();
+			if (infoOptionSelect.get(0) instanceof SignOut) option.clear();
 		}
 		else{
 			if (!goingIn){
@@ -299,7 +299,7 @@ public class EnterInfoTab extends Tab{
 					printWriter.print("\"" + st.getName() + "\",");
 					printWriter.print("\"" + st.getGrade() + "\",");
 					printWriter.print("\"" + st.getTime() + "\",");
-					printWriter.print("\"" + st.getReason() + "\",");
+					printWriter.print("\"" + st.getReason() + "\"");
 					printWriter.println();
 				}
 				printWriter.close();
@@ -327,7 +327,7 @@ public class EnterInfoTab extends Tab{
 					printWriter.print("\"" + st.getReason() + "\",");
 					printWriter.print("\"" + st.getExcused() + "\",");
 					printWriter.print("\"" + st.getTime() + "\",");
-					printWriter.print("\"" + st.getArrTime() + "\",");
+					printWriter.print("\"" + st.getArrTime() + "\"");
 					printWriter.println();
 				}
 				printWriter.close();

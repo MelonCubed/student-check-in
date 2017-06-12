@@ -1,5 +1,5 @@
 .searchTextField{
-   -fx-font-size: 13pt;
+   -fx-font-size: 15pt;
    -fx-font-family: "Courier New";
 }
 
@@ -52,6 +52,7 @@
   -fx-font-weight: bold;
   -fx-background-color: #ffeb3b/*#428bca*/;
   -fx-border-color: #ffeb3b/*#357ebd*/;
+  -fx-font-size: 20;
 }
 .buttonStudent {
   -fx-border-radius: 4px;
@@ -148,8 +149,8 @@
 
 .optionSelect{
 	-fx-alignment: center;
-	-fx-background-color: #ffffff;
-	-fx-border-color: #337ab7;
+	-fx-background-color: #fff;
+	-fx-border-color: #000;
 	-fx-border-width: 1;
 	-fx-border-radius: 5;
 	
@@ -161,18 +162,19 @@
   -fx-pref-height:50;
   -fx-alignment:center;
   -fx-background-color:/*#fff*/#ffeb3b;
-  -fx-text-fill: #fff;
+  -fx-text-fill: #000;
   -fx-border-radius: 0;
   -fx-background-radius: 5 5 0 0;
-  -fx-font-size: 20pt;
+  -fx-font-size: 25pt;
   
 }
 .optionHeader {
 	-fx-font-weight: bold;
-	-fx-font-size: 20pt;
+	-fx-font-size: 25pt;
 	-fx-max-width:905;
 	-fx-text-fill: #fff;
-	-fx-background-color: /*#000*/#c8b900;
+	-fx-background-color: #000;
+	-fx-border-color: transparent;
 }
 .optionButton-top {
   -fx-max-height: 10000;
@@ -183,7 +185,7 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0 0 0.5 0;
-  -fx-font-size: 20;
+  -fx-font-size: 25;
 }
 .optionButton-mid {
 
@@ -195,18 +197,18 @@
   -fx-border-color: #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0.5 0;
-  -fx-font-size: 20;
+  -fx-font-size: 25;
 }
 
 .optionButton-bottom{
   -fx-max-height: 10000;
   -fx-max-width: 10000;
-  -fx-border-color: #ccc #ccc #337ab7 #ccc;
+  -fx-border-color: #ccc #ccc #ccc #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0 0;
   -fx-border-radius: 0 0 0 0;
   -fx-background-radius: 0 0 0 0;
-  -fx-font-size: 20;
+  -fx-font-size: 25;
 
 }
 
@@ -217,7 +219,7 @@
 
 }
 .optionButton-mid:armed, .optionButton-top:armed {
-  -fx-border-color: #ccc #ccc #337ab7 #ccc;
+  -fx-border-color: #ccc #ccc #ccc #ccc;
   -fx-background-color: #c7ddef !important;
 }
 
@@ -229,13 +231,13 @@
 
 .optionButton-bottom:armed{
   -fx-background-color: #c7ddef !important;
-	-fx-border-color: #ccc #ccc #337ab7 #ccc !important;
+	-fx-border-color: #ccc #ccc #ccc #ccc !important;
     -fx-border-width: 0.5 1 0 1;
 }
 
 
 .optionTextFieldOther{
-  -fx-border-color: #ccc #ccc #337ab7 #ccc;
+  -fx-border-color: #ccc #ccc #ccc #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0 0;
   -fx-border-radius: 0 0 0 0;
@@ -245,6 +247,7 @@
 }
 .otherLabel {
 	-fx-text-size: 200;
+	-fx-font-size: 20;
 }
 
 
@@ -292,7 +295,7 @@
   -fx-max-height: 40;
   -fx-pref-height: 40;
   -fx-max-width: 10000;
-  -fx-border-color: #ccc #ccc #337ab7 #ccc;
+  -fx-border-color: #ccc #ccc #ccc #ccc;
   -fx-text-fill: black;
   -fx-border-width: 0.5 0 0 0;
   -fx-border-radius: 0 0 0 0;
@@ -435,7 +438,7 @@
 	-fx-background-color: #fff;
 	-fx-background-radius: 0;
 	-fx-border-radius: 0;
-	-fx-border-color: #357ebd;
+	-fx-border-color: #ccc;
 	-fx-border-width: 1;
 	-fx-padding: 0;
 }
@@ -643,6 +646,6 @@
 	-fx-background-color: #000;
 }
 .studentIDLabel{
-	-fx-font-size: 15;
+	-fx-font-size: 20;
 	-fx-text-fill: #fff;
 }
